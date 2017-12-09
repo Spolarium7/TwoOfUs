@@ -10,29 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TwoOfUs.Domain.BLL;
 using TwoOfUs.Domain.Models;
 
-namespace TwoOfUs.POS
+namespace TwoOfUs.POS.UsersSamp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Users.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Users : Window
     {
-        public MainWindow()
+
+        public Users()
         {
-
-
+            List<User> users = UsersBLL.GetAll();
             InitializeComponent();
-        }
 
-        private void btnUsers_Click(object sender, RoutedEventArgs e)
-        {
-            Users.List userWindow = new Users.List();
-            userWindow.Show();
+            grUsers.ItemsSource = users;
         }
     }
 }
