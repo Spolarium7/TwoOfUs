@@ -30,6 +30,7 @@ namespace TwoOfUs.POS.Users
         private SortOrder sortOrder = SortOrder.Ascending;
         private UserSortOrder sortBy = UserSortOrder.UserName;
         private Role? role = null;
+        private string keyword = "";
      
         public List()
         {
@@ -56,7 +57,7 @@ namespace TwoOfUs.POS.Users
 
         private void showList()
         {
-            Page<User> users = UsersBLL.Search(pageSize, pageIndex, sortBy, sortOrder, role);
+            Page<User> users = UsersBLL.Search(pageSize, pageIndex, sortBy, sortOrder, role, keyword);
             lblPages.Content = "page " + pageIndex + " of " + users.PageCount;
             lblResults.Content = "Search Result : " + users.QueryCount + " Users";
             queryCount = users.QueryCount;
@@ -186,7 +187,8 @@ namespace TwoOfUs.POS.Users
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            
+            keyword = txtSearch.Text;
+            showList();
         }
     }
 }
