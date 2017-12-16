@@ -61,9 +61,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UsersSamp\Users.xaml.cs">
-      <DependentUpon>Users.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Users\List.xaml.cs">
       <DependentUpon>List.xaml</DependentUpon>
     </Compile>
@@ -79,10 +76,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UsersSamp\Users.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Users\List.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

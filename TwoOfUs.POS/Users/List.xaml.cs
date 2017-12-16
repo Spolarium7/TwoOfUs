@@ -35,6 +35,9 @@ namespace TwoOfUs.POS.Users
             InitializeComponent();
             cboSortBy.ItemsSource = Enum.GetValues(typeof(UserSortOrder)).Cast<UserSortOrder>();
             cboSortOrder.ItemsSource = Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>();
+            cboSortBy.SelectedIndex = 0;
+            cboSortOrder.SelectedIndex = 0;
+
             showList();
         }
 
@@ -128,6 +131,15 @@ namespace TwoOfUs.POS.Users
 
             pageSize = newPageSize;
             showList();
+        }
+
+        private void btnConfirmDelete_Click(object sender, RoutedEventArgs e)
+        {
+            User user = ((FrameworkElement)sender).DataContext as User;
+            if(MessageBox.Show("Are you sure you want to delete " + user.FirstName + " " + user.LastName + "?", "Delete User", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                //delete record
+            }
         }
     }
 }
