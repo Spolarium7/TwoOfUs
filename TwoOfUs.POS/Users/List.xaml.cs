@@ -133,21 +133,6 @@ namespace TwoOfUs.POS.Users
             showList();
         }
 
-        private void txtPageSize_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int newPageSize = 3;
-            bool result = Int32.TryParse(txtPageSize.Text, out newPageSize);
-
-            if(result == false)
-            {
-                newPageSize = 3;
-
-            }
-
-            pageSize = newPageSize;
-            showList();
-        }
-
         private void btnConfirmDelete_Click(object sender, RoutedEventArgs e)
         {
             User user = ((FrameworkElement)sender).DataContext as User;
@@ -190,6 +175,24 @@ namespace TwoOfUs.POS.Users
         {
             keyword = txtSearch.Text;
             showList();
+        }
+
+        private void txtPageSize_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                int newPageSize = 3;
+                bool result = Int32.TryParse(txtPageSize.Text, out newPageSize);
+
+                if (result == false)
+                {
+                    newPageSize = 3;
+
+                }
+
+                pageSize = newPageSize;
+                showList();
+            }
         }
     }
 }
