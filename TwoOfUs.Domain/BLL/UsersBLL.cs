@@ -22,6 +22,12 @@ namespace TwoOfUs.Domain.BLL
         {
             Page<User> result = new Page<User>();
 
+
+            if (pageSize < 1)
+            {
+                pageSize = 1;
+            }
+
             IQueryable<User> userQuery = (IQueryable<User>)db.Users;
 
             if(role != null)
@@ -73,7 +79,6 @@ namespace TwoOfUs.Domain.BLL
             {
                 users = userQuery.OrderByDescending(u => u.LastName).ToList();
             }
-
 
             result.Items = users.Skip(skip).Take((int)pageSize).ToList();
             result.PageCount = pageCount;

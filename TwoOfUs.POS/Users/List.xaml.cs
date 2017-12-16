@@ -63,6 +63,7 @@ namespace TwoOfUs.POS.Users
             queryCount = users.QueryCount;
             pageCount = users.PageCount;
             grList.ItemsSource = users.Items;
+            txtPageSize.Text = users.PageSize.ToString();
         }
 
         private void btnLast_Click(object sender, RoutedEventArgs e)
