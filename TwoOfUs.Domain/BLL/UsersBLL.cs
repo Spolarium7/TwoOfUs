@@ -18,10 +18,25 @@ namespace TwoOfUs.Domain.BLL
             return db.Users.ToList();
         }
 
-        public static Page<User> Search(long pageSize = 3, long pageIndex = 1, UserSortOrder orderBy = UserSortOrder.UserName, SortOrder sortOrder = SortOrder.Ascending)
+        public static Page<User> Search(long pageSize = 3, long pageIndex = 1, UserSortOrder orderBy = UserSortOrder.UserName, SortOrder sortOrder = SortOrder.Ascending, Role? role = null, string keyword ="")
         {
             Page<User> result = new Page<User>();
-            long queryCount = db.Users.Count();
+
+            IQueryable<User> userQuery = (IQueryable<User>)db.Users;
+
+            if(role != null)
+            {
+                userQuery = userQuery.Where(u => u.Role == role.Value);
+            }
+
+            if(string.IsNullOrEmpty(keyword) == false)
+            {
+                userQuery = userQuery.Where(u => u.FirstName.Contains(keyword) 
+                                            ||   u.LastName.Contains(keyword)
+                                            ||   u.UserName.Contains(keyword));
+            }
+
+            long queryCount = userQuery.Count();
 
             int pageCount = (int)Math.Ceiling((decimal)(queryCount / pageSize));
             long mod =(queryCount % pageSize);
@@ -36,27 +51,27 @@ namespace TwoOfUs.Domain.BLL
 
             if (sortOrder == SortOrder.Ascending && orderBy == UserSortOrder.UserName)
             {
-                users = db.Users.OrderBy(u => u.UserName).ToList();
+                users = userQuery.OrderBy(u => u.UserName).ToList();
             }
             else if (sortOrder == SortOrder.Descending && orderBy == UserSortOrder.UserName)
             {
-                users = db.Users.OrderByDescending(u => u.UserName).ToList();
+                users = userQuery.OrderByDescending(u => u.UserName).ToList();
             }
             else if (sortOrder == SortOrder.Ascending && orderBy == UserSortOrder.FirstName)
             {
-                users = db.Users.OrderBy(u => u.FirstName).ToList();
+                users = userQuery.OrderBy(u => u.FirstName).ToList();
             }
             else if (sortOrder == SortOrder.Descending && orderBy == UserSortOrder.FirstName)
             {
-                users = db.Users.OrderByDescending(u => u.FirstName).ToList();
+                users = userQuery.OrderByDescending(u => u.FirstName).ToList();
             }
             else if (sortOrder == SortOrder.Ascending && orderBy == UserSortOrder.LastName)
             {
-                users = db.Users.OrderBy(u => u.LastName).ToList();
+                users = userQuery.OrderBy(u => u.LastName).ToList();
             }
             else if (sortOrder == SortOrder.Descending && orderBy == UserSortOrder.LastName)
             {
-                users = db.Users.OrderByDescending(u => u.LastName).ToList();
+                users = userQuery.OrderByDescending(u => u.LastName).ToList();
             }
 
 
