@@ -17,5 +17,7 @@ namespace TwoOfUs.Domain.Infrastructure
         }
 
         public DbSet<Models.User> Users { get; set; }
+        public DbSet<Models.Category> Categories { get; set; }
+        public DbSet<Models.Product> Products { get; set; }
     }
 }

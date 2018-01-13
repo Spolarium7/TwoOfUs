@@ -140,9 +140,106 @@ namespace TwoOfUs.Domain.Infrastructure
                 }
             );
             db.SaveChanges();
-            #endregion 
+            #endregion
 
+            #region Categories
+            db.Categories.Add(
+                new Models.Category()
+                {
+                    Id = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac0"),
+                    Name = "Beverages"                    
+                }
+            );
+            db.SaveChanges();
 
+            db.Categories.Add(
+                new Models.Category()
+                {
+                    Id = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac1"),
+                    Name = "Alcoholic",
+                    ParentId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac0")
+                }
+            );
+            db.SaveChanges();
+
+            db.Categories.Add(
+                new Models.Category()
+                {
+                    Id = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac2"),
+                    Name = "Non-alcoholic",
+                    ParentId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac0")
+                }
+            );
+            db.SaveChanges();
+            #endregion
+
+            #region Products
+            db.Products.Add(
+                new Models.Product()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Beer",
+                    CategoryId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac1"),
+                    Price = decimal.Parse("50")
+                }
+            );
+            db.SaveChanges();
+
+            db.Products.Add(
+                new Models.Product()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Rhum",
+                    CategoryId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac1"),
+                    Price = decimal.Parse("750")
+                }
+            );
+            db.SaveChanges();
+
+            db.Products.Add(
+                new Models.Product()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Whiskey",
+                    CategoryId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac1"),
+                    Price = decimal.Parse("550")
+                }
+            );
+            db.SaveChanges();
+
+            db.Products.Add(
+                new Models.Product()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Juice",
+                    CategoryId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac2"),
+                    Price = decimal.Parse("50")
+                }
+            );
+            db.SaveChanges();
+
+            db.Products.Add(
+                new Models.Product()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Soda",
+                    CategoryId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac2"),
+                    Price = decimal.Parse("40")
+                }
+            );
+            db.SaveChanges();
+
+            db.Products.Add(
+                new Models.Product()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Shake",
+                    CategoryId = Guid.Parse("9f701a1e-e90a-4f23-8434-7c8372de0ac2"),
+                    Price = decimal.Parse("80")
+                }
+            );
+            db.SaveChanges();
+            #endregion
         }
     }
 }

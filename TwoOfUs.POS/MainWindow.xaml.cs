@@ -34,5 +34,11 @@ namespace TwoOfUs.POS
             Users.List userWindow = new Users.List();
             userWindow.Show();
         }
+
+        private void btnCategories_Click(object sender, RoutedEventArgs e)
+        {
+            Categories.List categoryWindow = new Categories.List();
+            categoryWindow.Show();
+        }
     }
 }
