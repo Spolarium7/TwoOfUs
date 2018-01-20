@@ -194,5 +194,11 @@ namespace TwoOfUs.POS.Users
                 showList();
             }
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Users.Add addWindow = new Users.Add();
+            addWindow.Show();
+        }
     }
 }

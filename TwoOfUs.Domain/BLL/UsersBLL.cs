@@ -18,6 +18,18 @@ namespace TwoOfUs.Domain.BLL
             return db.Users.ToList();
         }
 
+        public static User GetUserByUserName(string userName)
+        {
+            return db.Users.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
+        }
+
+        public static User Create(User user)
+        {
+            db.Users.Add(user);
+            db.SaveChanges();
+            return user;
+        } 
+
         public static Page<User> Search(long pageSize = 3, long pageIndex = 1, UserSortOrder orderBy = UserSortOrder.UserName, SortOrder sortOrder = SortOrder.Ascending, Role? role = null, string keyword ="")
         {
             Page<User> result = new Page<User>();
