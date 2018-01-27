@@ -136,9 +136,12 @@ namespace TwoOfUs.POS.Users
         private void btnConfirmDelete_Click(object sender, RoutedEventArgs e)
         {
             User user = ((FrameworkElement)sender).DataContext as User;
-            if(MessageBox.Show("Are you sure you want to delete " + user.FirstName + " " + user.LastName + "?", "Delete User", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if(MessageBox.Show("Are you sure you want to delete " 
+                + user.FirstName + " " + user.LastName + "?",
+                "Delete User", MessageBoxButton.YesNo)
+                == MessageBoxResult.Yes)
             {
-                //delete record
+                UsersBLL.Delete(user);
             }
         }
 
@@ -207,5 +210,6 @@ namespace TwoOfUs.POS.Users
             Update updateWindow = new Update(user);
             updateWindow.Show();
         }
+
     }
 }

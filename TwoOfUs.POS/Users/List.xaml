@@ -24,6 +24,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnConfirmDelete" Click="btnConfirmDelete_Click">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>                
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnLast" Content="&gt;|" HorizontalAlignment="Left" Margin="732,322,0,0" VerticalAlignment="Top" Width="34" Height="54" FontSize="22" Click="btnLast_Click"/>

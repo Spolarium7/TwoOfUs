@@ -42,6 +42,13 @@ namespace TwoOfUs.Domain.BLL
             return user;
         }
 
+        public static Guid? Delete(User user)
+        {
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return user.Id;
+        }
+
         public static User Update(User user)
         {
             User userRecord = db.Users.FirstOrDefault(u => u.Id == user.Id);
