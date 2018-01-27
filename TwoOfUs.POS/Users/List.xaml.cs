@@ -200,5 +200,12 @@ namespace TwoOfUs.POS.Users
             Users.Add addWindow = new Users.Add();
             addWindow.Show();
         }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            User user = ((FrameworkElement)sender).DataContext as User;
+            Update updateWindow = new Update(user);
+            updateWindow.Show();
+        }
     }
 }

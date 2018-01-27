@@ -17,18 +17,45 @@ namespace TwoOfUs.Domain.BLL
         {
             return db.Users.ToList();
         }
-
+        
+        public static User Find(Guid? id)
+        {
+            return db.Users.FirstOrDefault(u => u.Id == id);
+        }
+        
         public static User GetUserByUserName(string userName)
         {
             return db.Users.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
         }
 
+        public static User GetDuplicateUserName(string userName, Guid? id)
+        {
+            return db.Users.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower()
+                                            && u.Id != id
+            );
+        }
+        
         public static User Create(User user)
         {
             db.Users.Add(user);
             db.SaveChanges();
             return user;
-        } 
+        }
+
+        public static User Update(User user)
+        {
+            User userRecord = db.Users.FirstOrDefault(u => u.Id == user.Id);
+            if (userRecord != null)
+            {
+                userRecord.FirstName = user.FirstName;
+                userRecord.LastName = user.LastName;
+                userRecord.UserName = user.UserName;
+                userRecord.Role = user.Role;
+                db.SaveChanges();
+            }
+
+            return userRecord;
+        }
 
         public static Page<User> Search(long pageSize = 3, long pageIndex = 1, UserSortOrder orderBy = UserSortOrder.UserName, SortOrder sortOrder = SortOrder.Ascending, Role? role = null, string keyword ="")
         {
