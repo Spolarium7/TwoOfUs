@@ -23,14 +23,16 @@ namespace TwoOfUs.POS.Users
     public partial class Update : Window
     {
         private User _user;
+        private Users.List _sender;
 
-        public Update(User user)
+        public Update(User user, Users.List sender)
         {
             InitializeComponent();
             this.txtFirstName.Text = user.FirstName;
             this.txtLastName.Text = user.LastName;
             this.txtUserName.Text = user.UserName;
             this._user = user;
+            this._sender = sender;
 
             cboRole.ItemsSource = Enum.GetValues(typeof(Role)).Cast<Role>().ToList();
             cboRole.SelectedValue = user.Role;
@@ -81,6 +83,7 @@ namespace TwoOfUs.POS.Users
                 user.Id = this._user.Id;
                 UsersBLL.Update(user);
                 MessageBox.Show("User successfully updated.");
+                this._sender.showList();
                 this.Close();
             }
         }

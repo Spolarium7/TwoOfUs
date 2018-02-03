@@ -55,7 +55,7 @@ namespace TwoOfUs.POS.Users
             showList();
         }
 
-        private void showList()
+        public void showList()
         {
             Page<User> users = UsersBLL.Search(pageSize, pageIndex, sortBy, sortOrder, role, keyword);
             lblPages.Content = "page " + pageIndex + " of " + users.PageCount;
@@ -142,6 +142,8 @@ namespace TwoOfUs.POS.Users
                 == MessageBoxResult.Yes)
             {
                 UsersBLL.Delete(user);
+                MessageBox.Show("User successfully deleted");
+                showList();
             }
         }
 
@@ -200,14 +202,14 @@ namespace TwoOfUs.POS.Users
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Users.Add addWindow = new Users.Add();
+            Users.Add addWindow = new Users.Add(this);
             addWindow.Show();
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             User user = ((FrameworkElement)sender).DataContext as User;
-            Update updateWindow = new Update(user);
+            Update updateWindow = new Update(user, this);
             updateWindow.Show();
         }
 
