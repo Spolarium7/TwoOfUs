@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TwoOfUs.Domain.CustomModels;
 using TwoOfUs.Domain.Infrastructure;
 using TwoOfUs.Domain.Models;
 using TwoOfUs.Domain.Models.Enums;
@@ -18,9 +19,9 @@ namespace TwoOfUs.Domain.BLL
             return db.Categories.ToList();
         }
 
-        public static Page<Category> Search(long pageSize = 3, long pageIndex = 1, SortOrder sortOrder = SortOrder.Ascending, string keyword = "", Guid? parentId = null)
+        public static Page<CustomCategory> Search(long pageSize = 3, long pageIndex = 1, SortOrder sortOrder = SortOrder.Ascending, string keyword = "", Guid? parentId = null)
         {
-            Page<Category> result = new Page<Category>();
+            Page<CustomCategory> result = new Page<CustomCategory>();
              
             if (pageSize < 1)
             {
@@ -66,11 +67,36 @@ namespace TwoOfUs.Domain.BLL
             }
 
 
-            result.Items = categories.Skip(skip).Take((int)pageSize).ToList();
+            result.Items = categories
+                            .Skip(skip)
+                            .Take((int)pageSize)
+                            .Select(c => new CustomCategory()
+                            {
+                                Id = c.Id,
+                                Name = c.Name,
+                                Timestamp = c.Timestamp,
+                                ParentId = c.ParentId
+                            })               
+                            .ToList();
             result.PageCount = pageCount;
             result.PageSize = pageSize;
             result.QueryCount = queryCount;
 
+            foreach(CustomCategory category in result.Items)
+            {
+                var children = db.Categories.Where(c => c.ParentId == category.Id);
+                if(children != null)
+                {
+                    category.ChildCount = children.Count();
+                };
+
+                var products = db.Products.Where(p => p.CategoryId == category.Id);
+                if (products != null)
+                {
+                    category.ProductCount = products.Count();
+                };
+            }
+            
             return result;
         }
     }

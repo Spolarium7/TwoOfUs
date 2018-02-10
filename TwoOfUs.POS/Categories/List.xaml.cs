@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TwoOfUs.Domain.BLL;
+using TwoOfUs.Domain.CustomModels;
 using TwoOfUs.Domain.Infrastructure;
 using TwoOfUs.Domain.Models;
 using TwoOfUs.Domain.Models.Enums;
@@ -48,7 +49,7 @@ namespace TwoOfUs.POS.Categories
 
         private void showList()
         {
-            Page<Category> categories = CategoryBLL.Search(pageSize, pageIndex, sortOrder, keyword, this.parentId);
+            Page<CustomCategory> categories = CategoryBLL.Search(pageSize, pageIndex, sortOrder, keyword, this.parentId);
             lblPages.Content = "page " + pageIndex + " of " + categories.PageCount;
             lblResults.Content = "Search Result : " + categories.QueryCount + " Categories";
             queryCount = categories.QueryCount;
@@ -133,7 +134,7 @@ namespace TwoOfUs.POS.Categories
 
         private void btnViewChildren_Click(object sender, RoutedEventArgs e)
         {
-            Category category = ((FrameworkElement)sender).DataContext as Category;
+            CustomCategory category = ((FrameworkElement)sender).DataContext as CustomCategory;
             Categories.List categoryWindow = new Categories.List(category.Id, category.Name);
             categoryWindow.Show();
         }
@@ -141,9 +142,10 @@ namespace TwoOfUs.POS.Categories
 
         private void btnViewProducts_Click(object sender, RoutedEventArgs e)
         {
-            Category category = ((FrameworkElement)sender).DataContext as Category;
+            CustomCategory category = ((FrameworkElement)sender).DataContext as CustomCategory;
             Products.List productWindow = new Products.List(category.Id, category.Name);
             productWindow.Show();
         }
+
     }
 }
