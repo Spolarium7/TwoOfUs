@@ -9,6 +9,7 @@
     <Grid>
         <Button x:Name="btnUsers" Content="Users" HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top" Width="65" Height="57" Click="btnUsers_Click"/>
         <Button x:Name="btnCategories" Content="Categories" HorizontalAlignment="Left" Margin="372,10,0,0" VerticalAlignment="Top" Width="65" Height="57" Click="btnCategories_Click"/>
+        <Button x:Name="btnDeliveries" Content="Deliveries" HorizontalAlignment="Left" Margin="302,10,0,0" VerticalAlignment="Top" Width="65" Height="57" Click="btnDeliveries_Click"/>
 
     </Grid>
 </Window>

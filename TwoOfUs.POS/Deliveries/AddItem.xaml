@@ -1,0 +1,28 @@
+﻿<Window x:Class="TwoOfUs.POS.Deliveries.AddItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        xmlns:local="clr-namespace:TwoOfUs.POS.Deliveries"
+        mc:Ignorable="d"
+        Title="Add Delivery Item" Height="505.858" Width="463.18">
+    <Grid>
+        <TextBox Padding="5, 3, 5, 3"    
+         KeyUp="TextBox_KeyUp" Name="textBox" Margin="10,46,10,400" />
+        <Border BorderBrush="Black"   
+        BorderThickness="1" Margin="10,80,10,168">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="-1,-1,0,73">
+                <StackPanel Name="resultStack">
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Label Name="lblMaterial" Content="Material" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtQty" HorizontalAlignment="Left" Height="28" Margin="10,372,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="435"/>
+        <Label x:Name="lblQty" Content="Quantity" HorizontalAlignment="Left" Margin="10,332,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblMaterialId" Content="" HorizontalAlignment="Left" Margin="84,332,0,0" VerticalAlignment="Top"/>
+        <Button Name ="btnSave" Content="Save" HorizontalAlignment="Left" Margin="370,422,0,0" VerticalAlignment="Top" Width="75" Height="28" Click="btnSave_Click"/>
+        <Button x:Name ="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="290,422,0,0" VerticalAlignment="Top" Width="75" Height="28" Click="btnCancel_Click"/>
+    </Grid>
+</Window>

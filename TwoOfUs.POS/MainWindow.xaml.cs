@@ -40,5 +40,11 @@ namespace TwoOfUs.POS
             Categories.List categoryWindow = new Categories.List();
             categoryWindow.Show();
         }
+
+        private void btnDeliveries_Click(object sender, RoutedEventArgs e)
+        {
+            Deliveries.List deliveryWindow = new Deliveries.List();
+            deliveryWindow.Show();
+        }
     }
 }

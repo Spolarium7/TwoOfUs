@@ -240,6 +240,39 @@ namespace TwoOfUs.Domain.Infrastructure
             );
             db.SaveChanges();
             #endregion
+
+            #region Materials
+            db.Materials.Add(
+                new Models.Material()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Chicken Fillet",
+                    UOM = "pcs",
+                    Quantity = 100
+                }
+            );
+
+            db.Materials.Add(
+                new Models.Material()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Siomai",
+                    UOM = "pcs",
+                    Quantity = 50
+                }
+            );
+
+            db.Materials.Add(
+                new Models.Material()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Noodles",
+                    UOM = "pack",
+                    Quantity = 500
+                }
+            );
+            db.SaveChanges();
+            #endregion
         }
     }
 }

@@ -49,17 +49,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\CategoryBLL.cs" />
+    <Compile Include="BLL\DeliveryBLL.cs" />
+    <Compile Include="BLL\MaterialBLL.cs" />
     <Compile Include="BLL\ProductBLL.cs" />
     <Compile Include="BLL\UsersBLL.cs" />
     <Compile Include="CustomModels\CustomCategory.cs" />
+    <Compile Include="CustomModels\CustomDelivery.cs" />
     <Compile Include="Infrastructure\BaseModel.cs" />
     <Compile Include="Infrastructure\DataAccess.cs" />
     <Compile Include="Infrastructure\DataInitializer.cs" />
     <Compile Include="Infrastructure\Page.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Delivery.cs" />
+    <Compile Include="Models\DeliveryItem.cs" />
     <Compile Include="Models\Enums\Role.cs" />
     <Compile Include="Models\Enums\SortOrder.cs" />
     <Compile Include="Models\Enums\UserSortOrder.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
